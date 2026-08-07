@@ -26,12 +26,12 @@ class AdController(
     val host: AdHost,
 ) {
     var adsEnabled by mutableStateOf(
-        backend.settings.preference(ADS_ENABLED_PREF)?.toBooleanStrictOrNull() ?: true
+        backend.settings.preference(ADS_ENABLED_PREF)?.toBooleanStrictOrNull() ?: false //تعطيل الاعلانات
     )
         private set
 
     /** Ads render only when the host has an ad network AND the user hasn't turned them off. */
-    val adsActive: Boolean get() = host.available && adsEnabled
+    val adsActive: Boolean get() = false //host.available && adsEnabled ارجعها لو عايز الاعلانات تشتغل
 
     /** Whether to show the ad on/off control (only where an ad network exists — i.e. Android, not desktop). */
     val manageable: Boolean get() = host.available
